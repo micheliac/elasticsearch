@@ -12,4 +12,12 @@ stages:
       tag: micheliac/elasticsearch:test
       pushRemote: true
       registry: index.docker.io
+  - runScriptConfig:
+      image: golang:latest
+      shellScript: echo ${mykey1}
+    envFrom:
+    - sourceName: test
+      sourceKey: mykey
+      targetKey: mykey1
+    privileged: true
 branch: {}
