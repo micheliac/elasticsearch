@@ -1,23 +1,13 @@
 stages:
 - name: build
   steps:
-  - runScriptConfig:
-      image: golang:latest
-      shellScript: echo 'mytest'
-- name: build and push
-  steps:
   - publishImageConfig:
       dockerfilePath: ./package/Dockerfile
       buildContext: .
-      tag: micheliac/elasticsearch:test
-      pushRemote: true
+      tag: michelia/elasticsearch:test
       registry: index.docker.io
-  - runScriptConfig:
-      image: golang:latest
-      shellScript: echo ${mykey1}
-    envFrom:
-    - sourceName: test
-      sourceKey: mykey
-      targetKey: mykey1
-    privileged: true
+  when:
+    event:
+      include:
+      - push
 branch: {}
