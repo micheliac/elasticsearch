@@ -10,4 +10,8 @@ stages:
     event:
       include:
       - push
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
 branch: {}
